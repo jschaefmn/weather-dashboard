@@ -30,4 +30,18 @@ function getLocation(city) {
 
   // OpenWeather call API
   var userInput = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=7ab439372a6b7834b1058543aced3bee";
+
+  fetch(userInput)
+    .then(function (response) {
+      return response.json();
+    }).then(function (data) {
+      // set geolocation info
+      lat = data.coord.lat;
+      lon = data.coord.lon;
+      weatherInfo(data);
+    })
+};
+
+function weatherInfo(data) {
+
 }
