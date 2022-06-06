@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: rgba(94, 96, 206, 0.9);
+  text-align: center;
+  padding: 2rem;
+  border-bottom: 0.5rem solid rgba(116, 0, 184, 0.4);
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+div.row {
+  padding: 1.5rem;
+}
+
+.btn {
+  font-size: 1.1rem;
+  margin: 5px 0;
+}
+
+input {
+  line-height: 2.1rem;
+  border-radius: 0.4rem;
+}
+
+/* dynamic previous searches */
+
+.previous-search-btn {
+  background-color: rgba(86, 207, 225, 1);
+  color: #FFF;
+  margin: 5px 0;
+  padding: 1.5rem;
+  width: 100%;
+  border-radius: 1rem;
+  border-style: none;
+}
