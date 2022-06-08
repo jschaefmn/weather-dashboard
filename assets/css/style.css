@@ -1,41 +1,98 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #E9D8A6;
 }
 
 header {
-  background-color: rgba(94, 96, 206, 0.9);
+  background-color: #EE9B00;
+  color: #fff;
+  padding: 10px;
   text-align: center;
-  padding: 2rem;
-  border-bottom: 0.5rem solid rgba(116, 0, 184, 0.4);
 }
 
-h1 {
-  font-size: 5rem;
+section {
+  padding: 15px;
 }
 
-div.row {
-  padding: 1.5rem;
+/* City search form */
+form {
+  display: flex;
+  flex-direction: column;
 }
 
 .btn {
-  font-size: 1.1rem;
+  background-color: #BB3E03;
+  color: #fff;
   margin: 5px 0;
 }
 
-input {
-  line-height: 2.1rem;
-  border-radius: 0.4rem;
-}
-
-/* dynamic previous searches */
-
-.previous-search-btn {
-  background-color: rgba(86, 207, 225, 1);
-  color: #FFF;
+/* Search history */
+.history-btn {
+  background-color: #d4d4d4;
+  color: #000;
   margin: 5px 0;
-  padding: 1.5rem;
+  padding: 5px;
+  border-radius: 5px;
   width: 100%;
-  border-radius: 1rem;
   border-style: none;
+}
+
+.history-btn:hover {
+  background-color: #BB3E03;
+  color: #fff;
+}
+
+/* Current weather section */
+.outline {
+  padding: 5px;
+  border: 1px solid #000;
+  margin-bottom: 15px;
+}
+
+.uv-mild {
+  background-color: #008000;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.uv-moderate {
+  background-color: #FCE300;
+  color: #000;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.uv-severe {
+  background-color: #FF8200;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.uv-super-severe {
+  background-color: #ED2E38;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.uv-extreme {
+  background-color: #9063CD;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+/* 5-day forecast */
+.daily {
+  background-color: #BB3E03;
+  color: #fff;
+  margin: 2px 10px 10px 10px;
+  padding-top: 10px;
 }

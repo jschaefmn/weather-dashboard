@@ -7,9 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="./assets/css/style.css">
   <title>Weather Dashboard</title>
 </head>
@@ -19,39 +16,36 @@
     <h1>Weather Dashboard</h1>
   </header>
 
-  <div class="row">
-    <div class="col-12">
-      <!-- start left column/search column-->
-      <form id="search">
-        <label for="city-lookUp">
+  <section class="row">
+    <div class="col-12 col-md-4">
+      <!-- Search form -->
+      <form id="search-form">
+        <label for="city-lookup">
           <h2>Search for a City:</h2>
-          <input type="text" name="city-lookUp" id="city-lookUp">
-          <button class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
         </label>
+        <input name="city-lookup" id="city-lookup" type="text" />
+        <button type="submit" class="btn">Search</button>
       </form>
-      <br>
+      <hr>
 
-      <!-- search history -->
+      <!-- Search History -->
       <div id="search-history"></div>
     </div>
-    <!-- end left/search column -->
 
-    <!-- start right column/weather info -->
-    <div class="col-12">
-      <!-- today's weather info -->
-      <div id="current-day" class="col-12"></div>
-      <!-- 5-day forecast -->
-      <h3 id="daily-info"></h3>
-      <div id="forecast" class="row d-flex flex-row"></div>
+    <div class="col-12 col-md-8">
+      <!-- Current Weather Conditions -->
+      <div id="current-weather" class="col-12"></div>
+      <!-- 5-Day Forecast -->
+      <h3 id="daily-headline"></h3>
+      <div id="five-day" class="row d-flex flex-row"></div>
     </div>
-    <!-- end right column/weather info -->
-  </div>
 
+    </main>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="./assets/js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
