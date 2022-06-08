@@ -1,11 +1,11 @@
 var searchFormEl = document.querySelector("#search-form");
 var cityLookupEl = document.querySelector("#city-lookup");
 var currentWeatherEl = document.querySelector("#current-weather");
-var dailyHeadlineEl = document.querySelector("#daily-headline");
+var currentDateEl = document.querySelector("#daily-headline");
 var forecastEl = document.querySelector("#five-day");
 var historyEl = document.querySelector("#search-history");
 var search = [];
-function formSubmitHandler(event) {
+function formSubmit(event) {
   // Prevent page from refreshing
   event.preventDefault();
 
@@ -17,7 +17,7 @@ function formSubmitHandler(event) {
 
     // Clear old content
     currentWeatherEl.textContent = "";
-    dailyHeadlineEl.textContent = "";
+    currentDateEl.textContent = "";
     forecastEl.textContent = "";
     cityLookupEl.value = "";
   } else {
@@ -61,7 +61,7 @@ function getWeather(data) {
       renderCurrentResults(data, city);
     })
     .catch(function (error) {
-      alert("Unable to connect");
+      alert("Cannot Connect to Open Weather");
     });
 }
 
@@ -88,7 +88,7 @@ function renderCurrentResults(data, city) {
   currentIconEl.setAttribute("src", iconUrl);
   currentIconEl.setAttribute("alt", iconDescription);
 
-  // Color-code UV Index (reference: World Health Organization)
+  // Color-code UV Index
   if (data.current.uvi < 3) {
     $(uvIndexEl).addClass("uv-mild");
   } else if (data.current.uvi >= 3 && data.current.uvi < 6) {
@@ -109,7 +109,7 @@ function renderCurrentResults(data, city) {
   currentUvEl.textContent = "UV Index: ";
   uvIndexEl.textContent = data.current.uvi;
 
-  // Clear any previous data
+  // Clear previous data
   currentWeatherEl.innerHTML = "";
 
   // Print city, date and current conditions to page
@@ -125,15 +125,15 @@ function renderCurrentResults(data, city) {
 }
 
 function renderDailyWeather(data) {
-  dailyHeadlineEl.textContent = "5-Day Forecast:"
+  currentDateEl.textContent = "5-Day Forecast:"
 
   forecastEl.innerHTML = "";
 
   for (var i = 1; i < 6; i++) {
     // Dynamically create divs to hold five-day forecast
-    var dailyDiv = document.createElement("div");
-    forecastEl.append(dailyDiv);
-    dailyDiv.setAttribute("class", "col-sm daily");
+    var forecastDiv = document.createElement("div");
+    forecastEl.append(forecastDiv);
+    forecastDiv.setAttribute("class", "col-sm daily");
 
     // src and alt for the weather icon img
     var forecastIconUrl = "https://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png";
@@ -146,9 +146,9 @@ function renderDailyWeather(data) {
     var dateH4 = document.createElement("h4");
     var iconNewLine = document.createElement("p");
     var forecastIconEl = document.createElement("img");
-    var dailyTempEl = document.createElement("p");
-    var dailyWindEl = document.createElement("p");
-    var dailyHumidityEl = document.createElement("p");
+    var tempEl = document.createElement("p");
+    var windEl = document.createElement("p");
+    var humidityEl = document.createElement("p");
 
     // Set src and alt for weather icon img
     forecastIconEl.setAttribute("src", forecastIconUrl);
@@ -156,29 +156,23 @@ function renderDailyWeather(data) {
 
     // Set content for dynamic elements
     dateH4.textContent = date;
-    dailyTempEl.textContent = "Temp: " + data.daily[i].temp.day + "°F";
-    dailyWindEl.textContent = "Wind: " + data.daily[i].wind_speed + " MPH";
-    dailyHumidityEl.textContent = "Humidity: " + data.daily[i].humidity + "%";
+    tempEl.textContent = "Temp: " + data.daily[i].temp.day + "°F";
+    windEl.textContent = "Wind: " + data.daily[i].wind_speed + " MPH";
+    humidityEl.textContent = "Humidity: " + data.daily[i].humidity + "%";
 
     // Print city, date and forecast to page
-    dailyDiv.append(dateH4);
-    dailyDiv.appendChild(iconNewLine);
+    forecastDiv.append(dateH4);
+    forecastDiv.appendChild(iconNewLine);
     iconNewLine.appendChild(forecastIconEl);
-    dailyDiv.appendChild(dailyTempEl);
-    dailyDiv.appendChild(dailyWindEl);
-    dailyDiv.appendChild(dailyHumidityEl);
+    forecastDiv.appendChild(tempEl);
+    forecastDiv.appendChild(windEl);
+    forecastDiv.appendChild(humidityEl);
   }
 }
 
-// Save weather data to localStorage
-function saveData(data) {
-  search.push(data);
-  localStorage.setItem("search-history", JSON.stringify(data));
-  renderSearchHistory();
-}
 
 // Create dynamic buttons storing the city searched
-function renderSearchHistory() {
+function searchHistory() {
   historyEl.innerHTML = "";
   for (var i = search.length - 1; i >= 0; i--) {
     var button = document.createElement("button");
@@ -201,8 +195,14 @@ function handleSearchHistory(e) {
   getCoordinates(search);
 }
 
+// Save weather data
+function saveData(data) {
+  search.push(data);
+  localStorage.setItem("search-history", JSON.stringify(data));
+  searchHistory();
+}
 // Add event listener to form
-searchFormEl.addEventListener("submit", formSubmitHandler);
+searchFormEl.addEventListener("submit", formSubmit);
 
 // Add event listener to city search dynamic buttons
 historyEl.addEventListener("click", handleSearchHistory);
